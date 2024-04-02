@@ -21,7 +21,7 @@ class BoardGame {
     if (this.snake.isIntersected || this.snake.isCrashed) {
       this.gameOver();
     }
-    
+
     if (!this.isGameOver) {
       if (this.isFoodEaten) {
         this.renderFood();
@@ -96,8 +96,9 @@ class BoardGame {
       div.classList.add("snake");
       div.style.gridColumn = `${pt.x} / span 1`;
       div.style.gridRow = `${pt.y} / span 1`;
-
-      this.boardgame.appendChild(div);
+      if (pt.x && pt.y) {
+        this.boardgame.appendChild(div);
+      }
     });
   }
 

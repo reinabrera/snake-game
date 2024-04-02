@@ -16,6 +16,7 @@ const eatAudio = new Audio(eatSound);
 
 const speed: number = 6;
 let lastRenderTime: number;
+let isGameStarted: boolean = false;
 const boardgame = new BoardGame(boardGameElement, { x: 21, y: 21 }, 5);
 
 document.addEventListener("keyup", (e) => {
@@ -27,7 +28,15 @@ document.addEventListener("keyup", (e) => {
     boardgame.snake.setDirection("left");
   } else if (e.code === "ArrowRight") {
     boardgame.snake.setDirection("right");
+  } else if (e.code === "Space") {
+    if (!isGameStarted) {
+      isGameStarted = true;
+      startBtn.click();
+    } else if (boardgame.isGameOver) {
+      restartBtn.click();
+    }
   }
+
 });
 
 const gameLoop = (currentTime: number): void => {
