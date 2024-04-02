@@ -1,0 +1,91 @@
+@use "font.scss";
+
+body {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+button {
+  font-family: "Press Start 2P", system-ui;
+}
+
+.container {
+  width: 700px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  #gameboard {
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(21, 1fr);
+    grid-template-columns: repeat(21, 1fr);
+    background-color: black;
+    &.blur {
+      filter: blur(4px);
+    }
+  }
+
+  .snake {
+    background-color: green;
+    border: 2px solid black;
+  }
+  .food {
+    background-color: red;
+    grid-column: 5 / span 1;
+    grid-row: 5 / span 1;
+  }
+
+  #game-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    &.active {
+      display: block !important;
+    }
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      & > div {
+        padding: 10px;
+        background-color: red;
+        &.start-game {
+          button {
+            font-size: 50px;
+            margin-bottom: 10px !important;
+          }
+        }
+        &.play-again {
+          display: none;
+          h2 {
+            font-size: 50px;
+          }
+          button {
+            margin-top: 10px !important;
+            font-size: 25px;
+          }
+        }
+      }
+    }
+    button#start, button#restart {
+      display: block;
+      margin: 0 auto;
+      
+      background-color: transparent;
+      border: 2px solid white;
+      padding: 10px 10px 5px 10px;
+      cursor: pointer;
+    }
+  }
+}
